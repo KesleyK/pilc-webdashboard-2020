@@ -13,46 +13,47 @@ import axios from "../../services/axios-instance";
 
 import useStyles from "./styles";
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 
 export default function TransitionsModal() {
-
   const classes = useStyles();
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const userToken = useSelector(state => state.user.token)
+  const userToken = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    let token = localStorage.getItem('token')
-    if(token){
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+    if (token) {
       setLoading(true);
       let body = new FormData();
       body.append("class", "Auth");
       body.append("function", "verify");
       body.append("token", token);
-      axios.post('/',body)
-      .then((res)=>{
-        if(res.data.dados == "Token valido!"){
-          storeLogin(token);
-        }else{
+      axios
+        .post("/", body)
+        .then((res) => {
+          if (res.data.dados === "Token valido!") {
+            storeLogin(token);
+          } else {
+            localStorage.clear();
+            setErrorMessage("Sessão encerrada.");
+          }
+          setLoading(false);
+        })
+        .catch((res) => {
           localStorage.clear();
           setErrorMessage("Sessão encerrada.");
-        }
-        setLoading(false);
-      }).catch((res)=>{
-        localStorage.clear();
-        setErrorMessage("Sessão encerrada.");
-        setLoading(false);
-      })
+          setLoading(false);
+        });
     }
-  },[]);
+  }, []);
 
   const storeLogin = (token) => {
-    dispatch({ type: 'Login', token:token});
+    dispatch({ type: "Login", token: token });
   };
 
   const onSubmittedFormHandler = async () => {
@@ -70,9 +71,9 @@ export default function TransitionsModal() {
       .post("/", bodyFormData)
       .then(function (res) {
         setLoading(false);
-        let token = res.data.dados
-        storeLogin(token)
-        localStorage.setItem('token',token)
+        let token = res.data.dados;
+        storeLogin(token);
+        localStorage.setItem("token", token);
       })
       .catch(function (res) {
         setErrorMessage("Usuário não encontrado.");

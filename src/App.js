@@ -5,12 +5,13 @@ import GeneticsContent from "./components/GeneticsContent";
 import Exercises from "./components/Exercises";
 import Login from "./components/Login";
 import Ranking from "./components/Ranking";
+import VideoCarousel from "./components/VideoCarousel";
 
 import theme from "./theme";
 
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 
-import store from './services/store';
+import store from "./services/store";
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
           <Login />
           <Appbar />
           <GeneticsContent />
+          <VideoCarousel />
           <Exercises />
           <Ranking />
         </Provider>
