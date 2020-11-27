@@ -3,7 +3,7 @@ import ItemsCarousel from "react-items-carousel";
 
 import useStyles from "./styles";
 
-var mediaJSON = [
+const mediaJSON = [
   "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
   "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
   "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
@@ -27,6 +27,7 @@ export default function VideoCarousel() {
         style={{
           backgroundColor: "#eee",
           boxShadow: "rgba(0,0,0,.6) 0 2px 5px",
+          borderRadius: 7,
         }}
         width="260"
         controls
