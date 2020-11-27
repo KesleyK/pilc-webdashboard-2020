@@ -8,15 +8,21 @@ import Ranking from "./components/Ranking";
 
 import theme from "./theme";
 
+import { Provider } from 'react-redux';
+
+import store from './services/store';
+
 class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <Login />
-        <Appbar />
-        <GeneticsContent />
-        <Exercises />
-        <Ranking />
+        <Provider store={store}>
+          <Login />
+          <Appbar />
+          <GeneticsContent />
+          <Exercises />
+          <Ranking />
+        </Provider>
       </ThemeProvider>
     );
   }

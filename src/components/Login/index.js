@@ -13,15 +13,18 @@ import axios from "../../services/axios-instance";
 
 import useStyles from "./styles";
 
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function TransitionsModal() {
 
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const userToken = useSelector(state => state.user.token)
+  const dispatch = useDispatch();
 
   useEffect(()=>{
     let token = localStorage.getItem('token')
@@ -34,7 +37,7 @@ export default function TransitionsModal() {
       axios.post('/',body)
       .then((res)=>{
         if(res.data.dados == "Token valido!"){
-          handleClose();
+          storeLogin(token);
         }else{
           localStorage.clear();
           setErrorMessage("Sessão encerrada.");
@@ -48,8 +51,8 @@ export default function TransitionsModal() {
     }
   },[]);
 
-  const handleClose = () => {
-    setOpen(false);
+  const storeLogin = (token) => {
+    dispatch({ type: 'Login', token:token});
   };
 
   const onSubmittedFormHandler = async () => {
@@ -67,8 +70,9 @@ export default function TransitionsModal() {
       .post("/", bodyFormData)
       .then(function (res) {
         setLoading(false);
-        handleClose();
-        localStorage.setItem('token',res.data.dados)
+        let token = res.data.dados
+        storeLogin(token)
+        localStorage.setItem('token',token)
       })
       .catch(function (res) {
         setErrorMessage("Usuário não encontrado.");
@@ -92,14 +96,14 @@ export default function TransitionsModal() {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
-        open={open}
+        open={!userToken}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+        <Fade in={!userToken}>
           <div className={classes.paper}>
             {errorAlert}
             <TextField
