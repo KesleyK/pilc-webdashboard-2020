@@ -26,8 +26,8 @@ export default function ProminentAppBar() {
               <a href="#ranking" className={classes.link}>
                 Ranking
               </a>
+              <UserLabel/>
             </Box>
-            <UserLabel/>
           </Box>
         </Toolbar>
       </AppBar>

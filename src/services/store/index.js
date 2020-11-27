@@ -8,6 +8,7 @@ function usuario(state = InitialState, action) {
             let payload = JSON.parse(atob(action.token.split('.')[1]));
             return {...state, user:{...payload, token: action.token}};
         case 'Logout':
+            localStorage.clear();
             return InitialState;
 
         default:
