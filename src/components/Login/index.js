@@ -32,9 +32,9 @@ export default function TransitionsModal() {
     const bodyFormData = new FormData();
     bodyFormData.append("class", "Auth");
     bodyFormData.append("function", "login");
-    bodyFormData.append("email", "admin");
+    bodyFormData.append("email", account);
     bodyFormData.append("senha", password);
-    bodyFormData.append("conta", account);
+    bodyFormData.append("conta", "professor");
 
     axios
       .post("/", bodyFormData)
