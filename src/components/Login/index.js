@@ -25,7 +25,7 @@ export default function TransitionsModal() {
     setOpen(false);
   };
 
-  const onPostFormHandler = async () => {
+  const onSubmittedFormHandler = async () => {
     setErrorMessage("");
     setLoading(true);
 
@@ -90,6 +90,7 @@ export default function TransitionsModal() {
               className={classes.margin}
               onChange={(e) => setPassword(e.target.value)}
               label="Senha"
+              type="password"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -102,7 +103,7 @@ export default function TransitionsModal() {
               variant="contained"
               color="primary"
               className={classes.button}
-              onClick={() => onPostFormHandler()}
+              onClick={() => onSubmittedFormHandler()}
             >
               Logar
             </Button>
