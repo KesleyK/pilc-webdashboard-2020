@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
@@ -13,13 +13,40 @@ import axios from "../../services/axios-instance";
 
 import useStyles from "./styles";
 
+
 export default function TransitionsModal() {
+
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(()=>{
+    let token = localStorage.getItem('token')
+    if(token){
+      setLoading(true);
+      let body = new FormData();
+      body.append("class", "Auth");
+      body.append("function", "verify");
+      body.append("token", token);
+      axios.post('/',body)
+      .then((res)=>{
+        if(res.data.dados == "Token valido!"){
+          handleClose();
+        }else{
+          localStorage.clear();
+          setErrorMessage("Sessão encerrada.");
+        }
+        setLoading(false);
+      }).catch((res)=>{
+        localStorage.clear();
+        setErrorMessage("Sessão encerrada.");
+        setLoading(false);
+      })
+    }
+  },[]);
 
   const handleClose = () => {
     setOpen(false);
@@ -41,6 +68,7 @@ export default function TransitionsModal() {
       .then(function (res) {
         setLoading(false);
         handleClose();
+        localStorage.setItem('token',res.data.dados)
       })
       .catch(function (res) {
         setErrorMessage("Usuário não encontrado.");
@@ -78,6 +106,7 @@ export default function TransitionsModal() {
               className={classes.margin}
               onChange={(e) => setAccount(e.target.value)}
               label="Usuário"
+              autoFocus={true}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
