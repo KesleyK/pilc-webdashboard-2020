@@ -42,7 +42,7 @@ const UserLabel = () => {
                     <Avatar className={classes.avatar} alt={user.name} src={user.diretorio+user.img}/>
                 </Button>
                 <Menu
-                    style={{marginTop: 50, marginRight: 5}}
+                    style={{marginTop: 50}}
                     anchorEl={anchorEl}
                     open={open}
                     keepMounted

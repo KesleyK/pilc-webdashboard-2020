@@ -17,15 +17,6 @@ export default function ProminentAppBar() {
           <Typography className={classes.textLogo}>Portal Genética</Typography>
           <Box className={classes.rightContent}>
             <Box className={classes.linksHolder}>
-              <a href="#conteudo" className={classes.link}>
-                Conteúdo
-              </a>
-              <a href="#exercicios" className={classes.link}>
-                Exercícios
-              </a>
-              <a href="#ranking" className={classes.link}>
-                Ranking
-              </a>
               <UserLabel/>
             </Box>
           </Box>
