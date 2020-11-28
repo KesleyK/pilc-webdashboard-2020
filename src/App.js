@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import Appbar from "./components/Appbar";
-import GeneticsContent from "./components/GeneticsContent";
-import Exercises from "./components/Exercises";
 import Login from "./components/Login";
-import Ranking from "./components/Ranking";
-import VideoCarousel from "./components/VideoCarousel";
+import Routes from './routes';
 
 import theme from "./theme";
 
@@ -20,10 +17,7 @@ class App extends Component {
         <Provider store={store}>
           <Login />
           <Appbar />
-          <GeneticsContent />
-          <VideoCarousel />
-          <Exercises />
-          <Ranking />
+          <Routes />
         </Provider>
       </ThemeProvider>
     );
