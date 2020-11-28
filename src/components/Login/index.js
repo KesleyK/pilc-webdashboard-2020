@@ -9,6 +9,10 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Alert from "@material-ui/lab/Alert";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+
 import axios from "../../services/axios-instance";
 
 import useStyles from "./styles";
@@ -21,6 +25,7 @@ export default function TransitionsModal() {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [tipoConta, setTipoConta] = useState(false);
 
   const userToken = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
@@ -65,7 +70,7 @@ export default function TransitionsModal() {
     bodyFormData.append("function", "login");
     bodyFormData.append("email", account);
     bodyFormData.append("senha", password);
-    bodyFormData.append("conta", "professor");
+    bodyFormData.append("conta", (tipoConta?'professor':'aluno'));
 
     axios
       .post("/", bodyFormData)
@@ -141,6 +146,16 @@ export default function TransitionsModal() {
             >
               Logar
             </Button>
+            <FormControlLabel 
+              control={
+                <Switch 
+                  checked={tipoConta}
+                  onChange={ () => {setTipoConta(!tipoConta)} }
+                />
+              }
+              label="Professor"
+            />
+              
             {linearProgress}
           </div>
         </Fade>
