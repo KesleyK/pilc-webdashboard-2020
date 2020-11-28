@@ -20,15 +20,17 @@ import useStyles from "./styles";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function TransitionsModal() {
+  const userToken = useSelector((state) => state.user.token);
+  const dispatch = useDispatch();
+
   const classes = useStyles();
+  const [open, setOpen] = useState(!localStorage.getItem("token"))
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [tipoConta, setTipoConta] = useState(false);
 
-  const userToken = useSelector((state) => state.user.token);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -45,17 +47,22 @@ export default function TransitionsModal() {
             storeLogin(token);
           } else {
             localStorage.clear();
+            setOpen(!localStorage.getItem("token"));
             setErrorMessage("Sessão encerrada.");
           }
           setLoading(false);
         })
         .catch((res) => {
           localStorage.clear();
+          setOpen(!localStorage.getItem("token"));
           setErrorMessage("Sessão encerrada.");
           setLoading(false);
         });
     }
   }, []);
+  useEffect(() => {
+    setOpen(!localStorage.getItem("token"));
+  },[userToken]);
 
   const storeLogin = (token) => {
     dispatch({ type: "Login", token: token });
@@ -79,6 +86,7 @@ export default function TransitionsModal() {
         let token = res.data.dados;
         storeLogin(token);
         localStorage.setItem("token", token);
+        setOpen(!localStorage.getItem("token"));
       })
       .catch(function (res) {
         setErrorMessage("Usuário não encontrado.");
@@ -102,14 +110,14 @@ export default function TransitionsModal() {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
-        open={!userToken}
+        open={open}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={!userToken}>
+        <Fade in={open}>
           <div className={classes.paper}>
             {errorAlert}
             <TextField
