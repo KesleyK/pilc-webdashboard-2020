@@ -32,7 +32,7 @@ export default function TransitionsModal() {
 
   useEffect(() => {
     let token = localStorage.getItem("token");
-    if (token) {
+    if (token && !userToken) {
       setLoading(true);
       let body = new FormData();
       body.append("class", "Auth");

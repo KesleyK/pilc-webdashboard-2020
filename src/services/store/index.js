@@ -1,6 +1,6 @@
 import {createStore} from  'redux';
 
-const InitialState = {page: 'home',user:{token: null, conta: null, matricula: null, email: null, img: null, diretorio: null}}
+const InitialState = {user:{token: null, conta: null, matricula: null, email: null, img: null, diretorio: null}}
 
 function usuario(state = InitialState, action) {
     switch (action.type){
