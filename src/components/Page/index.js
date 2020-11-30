@@ -1,8 +1,16 @@
 import React, {useState,useEffect} from "react";
 import axios from "../../services/axios-instance";
+import useStyles from "./style";
+
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import { CardMedia } from '@material-ui/core';
+import VideoCarousel from "../VideoCarousel";
+
 
 const Page = ( props ) => {
     const [pagina,setPagina] = useState({});
+    const classes = useStyles();
 
     const carregarPagina = () => {
         let body = new FormData();
@@ -18,6 +26,25 @@ const Page = ( props ) => {
         .catch(() => {console.log('erro')})
     }
     useEffect(carregarPagina,[])
-    return <h1>{JSON.stringify(pagina)}</h1>;
+    return (
+        <Box className={classes.mainBox}>
+            <Box className={classes.containerCenter}>
+                <Box className={classes.pageBox}>
+                    <Typography variant="h1">{pagina.titulo}</Typography>
+                    <Box className={classes.containerImg}>
+                        <CardMedia image={pagina.img} component="img"/>
+                    </Box>
+                    <Typography paragraph>{pagina.body}</Typography>
+                    {pagina.tags?
+                        pagina.tags.map(tag => {
+                            return (<Typography>{tag}</Typography>)
+                        })
+                        :null
+                    }
+                </Box>
+            </Box>
+            <VideoCarousel />
+        </Box>
+    );
 }
 export default Page;
