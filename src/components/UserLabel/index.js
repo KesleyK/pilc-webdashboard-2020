@@ -39,7 +39,7 @@ const UserLabel = () => {
                 <Button
                     onClick={handleClick}
                 >
-                    <Avatar className={classes.avatar} alt={user.name} src={user.diretorio+user.img}/>
+                    <Avatar className={classes.avatar} alt={user.name} src={user.diretorio+'/'+user.img}/>
                 </Button>
                 <Menu
                     style={{marginTop: 50}}
