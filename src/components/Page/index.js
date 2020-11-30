@@ -21,6 +21,7 @@ const Page = ( props ) => {
         axios.post('/', body)
         .then(el => {
             if(el.data.status == 'sucesso'){
+                console.log(el.data.dados.body.split('\n'))
                 setPagina(el.data.dados);
             }
         })
@@ -41,7 +42,11 @@ const Page = ( props ) => {
                     <Box className={classes.containerImg}>
                         <CardMedia image={pagina.img} component="img"/>
                     </Box>
-                    <Typography paragraph>{pagina.body}</Typography>
+                    {pagina.body?
+                    pagina.body.split('\n').map(paragraph => <Typography paragraph>{paragraph}</Typography>)
+                    :null
+                    }
+                    
                 </Box>
             </Box>
             <VideoCarousel />
