@@ -5,6 +5,7 @@ import useStyles from "./style";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { CardMedia } from '@material-ui/core';
+import Chip from '@material-ui/core/Chip';
 import VideoCarousel from "../VideoCarousel";
 
 
@@ -31,16 +32,16 @@ const Page = ( props ) => {
             <Box className={classes.containerCenter}>
                 <Box className={classes.pageBox}>
                     <Typography variant="h1">{pagina.titulo}</Typography>
+                    {pagina.tags?
+                        pagina.tags.map(tag => {
+                            return (<Chip variant="outlined" size="small" label={tag} className={classes.mx5}/>)
+                        })
+                        :null
+                    }
                     <Box className={classes.containerImg}>
                         <CardMedia image={pagina.img} component="img"/>
                     </Box>
                     <Typography paragraph>{pagina.body}</Typography>
-                    {pagina.tags?
-                        pagina.tags.map(tag => {
-                            return (<Typography>{tag}</Typography>)
-                        })
-                        :null
-                    }
                 </Box>
             </Box>
             <VideoCarousel />

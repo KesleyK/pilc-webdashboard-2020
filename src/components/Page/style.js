@@ -11,12 +11,18 @@ export default makeStyles((theme) => ({
         alignItems: "center",
     },
     pageBox: {
-        width: '80vw'
+        width: '80vw',
+        paddingTop: 40,
+        paddingBottom: 80
     },
     containerImg:{
         margin: "auto",
         width: "50vw",
-        marginTop: 20,
-        marginBottom: 20
+        marginTop: 40,
+        marginBottom: 60
+    },
+    mx5:{
+        marginLeft: 5,
+        marginRight: 5
     }
 }));
