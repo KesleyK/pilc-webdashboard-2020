@@ -13,7 +13,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import useStyles from './styles';
 
 const UserLabel = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const id = open ? 'popover' : undefined;
     
