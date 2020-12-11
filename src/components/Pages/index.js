@@ -65,7 +65,7 @@ const Pages = ({history}) => {
                     )}
                 </Box>
             </Box>
-            <VideoCarousel />
+            {paginas.length != 0?<VideoCarousel />:null}
         </Box>
     );
 }

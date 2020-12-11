@@ -21,7 +21,6 @@ const Page = ( props ) => {
         axios.post('/', body)
         .then(el => {
             if(el.data.status == 'sucesso'){
-                console.log(el.data.dados.body.split('\n'))
                 setPagina(el.data.dados);
             }
         })
@@ -49,7 +48,7 @@ const Page = ( props ) => {
                     
                 </Box>
             </Box>
-            <VideoCarousel />
+            {Object.keys(pagina).length != 0?<VideoCarousel />:null}
         </Box>
     );
 }

@@ -12,7 +12,7 @@ const PriveteRoute = ({component : Component, ...restProps}) => {
     const userToken = useSelector((state) => state.user.token);
     return(
         <Route {...restProps} render={props => (
-            (userToken || localStorage.getItem("token"))? 
+            (userToken)? 
             (<Component {...props}/>):
             (<Redirect to={{ pathname: '/', state: {from: props.location}  }} />)
         )} />

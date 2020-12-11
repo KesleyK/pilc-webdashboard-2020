@@ -24,7 +24,6 @@ export default function TransitionsModal() {
   const dispatch = useDispatch();
 
   const classes = useStyles();
-  const [open, setOpen] = useState(!localStorage.getItem("token"))
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -33,39 +32,34 @@ export default function TransitionsModal() {
 
 
   useEffect(() => {
-    let token = localStorage.getItem("token");
-    if (token && !userToken) {
+    if (userToken) {
       setLoading(true);
       let body = new FormData();
       body.append("class", "Auth");
       body.append("function", "verify");
-      body.append("token", token);
+      body.append("token", userToken);
       axios
         .post("/", body)
         .then((res) => {
-          if (res.data.dados === "Token valido!") {
-            storeLogin(token);
-          } else {
-            localStorage.clear();
-            setOpen(!localStorage.getItem("token"));
+          if (res.data.dados != "Token valido!") {
+            storeLogout()
             setErrorMessage("Sessão encerrada.");
           }
           setLoading(false);
         })
         .catch((res) => {
-          localStorage.clear();
-          setOpen(!localStorage.getItem("token"));
+          storeLogout()
           setErrorMessage("Sessão encerrada.");
           setLoading(false);
         });
     }
   }, []);
-  useEffect(() => {
-    setOpen(!localStorage.getItem("token"));
-  },[userToken]);
 
   const storeLogin = (token) => {
     dispatch({ type: "Login", token: token });
+  };
+  const storeLogout = () => {
+    dispatch({ type: "Logout"});
   };
 
   const onSubmittedFormHandler = async () => {
@@ -85,8 +79,6 @@ export default function TransitionsModal() {
         setLoading(false);
         let token = res.data.dados;
         storeLogin(token);
-        localStorage.setItem("token", token);
-        setOpen(!localStorage.getItem("token"));
       })
       .catch(function (res) {
         setErrorMessage("Usuário não encontrado.");
@@ -110,14 +102,14 @@ export default function TransitionsModal() {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
-        open={open}
+        open={!userToken}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+        <Fade in={!userToken}>
           <div className={classes.paper}>
             {errorAlert}
             <TextField
