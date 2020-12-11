@@ -31,7 +31,7 @@ const Page = ( props ) => {
     useEffect(carregarPagina,[])
     return (
         <Box className={classes.mainBox}>
-            <Breadcrumbs>
+            <Breadcrumbs separator="›">
                 <Link color="inherit" href="/">
                     Home
                 </Link>

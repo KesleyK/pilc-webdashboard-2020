@@ -38,7 +38,7 @@ const Pages = ({history}) => {
     useEffect(carregarPaginas,[])
     return (
         <Box className={classes.mainBox}>
-            <Breadcrumbs>
+            <Breadcrumbs separator="›">
                 <Link color="inherit" href="/">
                     Home
                 </Link>
