@@ -8,6 +8,8 @@ export default makeStyles({
         display: 'inline-flex'
     },
     textCenter:{
+        marginTop: 10,
+        marginBottom: 10,
         textAlign: "center"
     }
 })

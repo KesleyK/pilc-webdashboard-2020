@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Avatar from '@material-ui/core/Avatar';
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
 import MenuItem from '@material-ui/core/MenuItem';
-import Fade from '@material-ui/core/Fade';
 import Typography from "@material-ui/core/Typography";
+import Popover from '@material-ui/core/Popover';
+
 
 
 import {useSelector, useDispatch} from 'react-redux';
@@ -15,12 +15,14 @@ import useStyles from './styles';
 const UserLabel = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+    const id = open ? 'popover' : undefined;
     
     const user = useSelector(state => state.user)
 
     const classes = useStyles();
 
     const dispatch = useDispatch();
+
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -41,19 +43,24 @@ const UserLabel = () => {
                 >
                     <Avatar className={classes.avatar} alt={user.name} src={user.diretorio+'/'+user.img}/>
                 </Button>
-                <Menu
-                    style={{marginTop: 50}}
-                    anchorEl={anchorEl}
+                <Popover
+                    id={id}
                     open={open}
-                    keepMounted
-                    elevation={0}
+                    anchorEl={anchorEl}
                     onClose={handleClose}
-                    TransitionComponent={Fade}
+                    anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                    }}
+                    transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                    }}
                 >
                     <Typography paragraph className={classes.textCenter}>{user.email}</Typography>
                     <MenuItem>Mudar Senha</MenuItem>
                     <MenuItem onClick={logout}>Sair</MenuItem>
-                </Menu>
+                </Popover>
             </Box>
         );
     }else{
