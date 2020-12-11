@@ -9,6 +9,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
 
 import VideoCarousel from "../VideoCarousel";
 
@@ -28,6 +30,7 @@ const Pages = ({history}) => {
         .then(el => {
             if(el.data.status == 'sucesso'){
                 setPaginas(el.data.dados);
+                console.log(el.data.dados)
             }
         })
         .catch(() => {console.log('erro')})
@@ -35,6 +38,14 @@ const Pages = ({history}) => {
     useEffect(carregarPaginas,[])
     return (
         <Box className={classes.mainBox}>
+            <Breadcrumbs>
+                <Link color="inherit" href="/">
+                    Home
+                </Link>
+                <Link color="textPrimary" aria-current="page">
+                    Páginas
+                </Link>
+            </Breadcrumbs>
             <Box className={classes.containerCenter}>
                 <Box className={classes.pageBox}>
                     {paginas.map(pagina => 

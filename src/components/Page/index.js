@@ -7,6 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import { CardMedia } from '@material-ui/core';
 import Chip from '@material-ui/core/Chip';
 import VideoCarousel from "../VideoCarousel";
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
 
 
 const Page = ( props ) => {
@@ -29,6 +31,17 @@ const Page = ( props ) => {
     useEffect(carregarPagina,[])
     return (
         <Box className={classes.mainBox}>
+            <Breadcrumbs>
+                <Link color="inherit" href="/">
+                    Home
+                </Link>
+                <Link color="inherit" href="/page">
+                    Páginas
+                </Link>
+                <Link color="textPrimary" aria-current="page">
+                    {pagina.titulo?pagina.titulo:''}
+                </Link>
+            </Breadcrumbs>
             <Box className={classes.containerCenter}>
                 <Box className={classes.pageBox}>
                     <Typography variant="h1">{pagina.titulo}</Typography>
