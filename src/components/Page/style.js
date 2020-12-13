@@ -24,5 +24,8 @@ export default makeStyles((theme) => ({
     mx5:{
         marginLeft: 5,
         marginRight: 5
+    },
+    card: {
+        width: 300,
     }
 }));

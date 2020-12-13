@@ -3,9 +3,13 @@ import axios from "../../services/axios-instance";
 import useStyles from "./style";
 
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { CardMedia } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 import Chip from '@material-ui/core/Chip';
+import Typography from "@material-ui/core/Typography";
 import VideoCarousel from "../VideoCarousel";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
@@ -13,7 +17,27 @@ import Link from '@material-ui/core/Link';
 
 const Page = ( props ) => {
     const [pagina,setPagina] = useState({});
+    const [jogos, setJogos] = useState([]);
     const classes = useStyles();
+
+    const getJogos = (tag) => {
+        let body = new FormData();
+        body.append("class", "Jogos");
+        body.append("function", "getJogosByTag");
+        body.append("tag", tag);
+        axios.post('/', body)
+        .then(el => {
+            if(el.data.status == 'sucesso'){
+                let arr = [...jogos, ...el.data.dados]
+                setJogos(
+                    arr.filter(function(este, i) {
+                        return arr.indexOf(este) === i;
+                    })
+                );
+            }
+        })
+        .catch(() => {console.log('Erro')})
+    }
 
     const carregarPagina = () => {
         let body = new FormData();
@@ -24,6 +48,9 @@ const Page = ( props ) => {
         .then(el => {
             if(el.data.status == 'sucesso'){
                 setPagina(el.data.dados);
+                el.data.dados.tags.forEach(tag => {
+                    getJogos(tag)
+                });
             }
         })
         .catch(() => {console.log('erro')})
@@ -60,6 +87,34 @@ const Page = ( props ) => {
                     }
                     
                 </Box>
+            </Box>
+            <Box>
+                {jogos.map(jogo => 
+                        <Card className={classes.card}>
+                            <CardActionArea>
+                                <CardMedia 
+                                    component="img"
+                                    image={jogo.imgTipo}
+                                    title={jogo.nome}
+                                    alt={jogo.nome}
+                                    height="140"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom component="h5">
+                                    {jogo.nome}
+                                </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    {jogo.tags?
+                                        jogo.tags.map(tag => 
+                                            <Chip variant="outlined" size="small" label={tag} className={classes.mx5}/>
+                                        )
+                                        :null
+                                    }
+                                </CardActions>
+                            </CardActionArea>
+                        </Card>
+                )}
             </Box>
             {Object.keys(pagina).length != 0?<VideoCarousel />:null}
         </Box>
