@@ -41,7 +41,7 @@ export const MudarSenha = ({open, close, token}) => {
                 setErrorMessage("")
                 close()
             }).catch(err =>{
-                setErrorMessage(err)
+                setErrorMessage(err.response.data.dados)
             })
         }else{
             setErrorMessage('Senha muito curta')
@@ -288,49 +288,8 @@ export const AdicionarProfessor = ({open, close, token}) => {
     );
 }
 export const AdicionarTurma = ({open, close, token}) => {
-    
+    return null
 }
 export const AdicionarAlunoTurma = ({open, close, token}) => {
-    const classes = useStyles();
-    return (
-        <Modal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            className={classes.modal}
-            open={open}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-            timeout: 500,
-            }}
-        >
-            <Fade in={open}>
-                <Box className={classes.paper}>
-                    <IconButton className={classes.iconClose} aria-label="close" color="inherit" size="small" onClick={close}>
-                        <CloseIcon fontSize="inherit" />
-                    </IconButton>
-                    <TextField
-                        className={classes.margin}
-                        label="Senha"
-                        type="password"
-                        InputProps={{
-                            startAdornment: (
-                            <InputAdornment position="start">
-                                <LockIcon />
-                            </InputAdornment>
-                            ),
-                        }}
-                    />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.button}
-                    >
-                        Mudar Senha
-                    </Button>
-                </Box>
-            </Fade>
-
-        </Modal>
-    );
+   return null;
 }
