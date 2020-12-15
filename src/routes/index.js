@@ -8,6 +8,8 @@ import Pages from '../components/Pages';
 import Turma from '../components/Turma';
 import Turmas from '../components/Turmas';
 import Game from '../components/Games';
+import Appbar from '../components/Appbar';
+import Login from '../components/Login';
 
 import { useSelector } from 'react-redux';
 
@@ -33,6 +35,8 @@ const PriveteRouteProfessor = ({component : Component, ...restProps}) => {
 
 const Routes = () => (
     <BrowserRouter>
+        <Login />
+        <Appbar />
         <Switch>
             <Route exact path="/" component={Home}/>
             <PriveteRoute exact path="/exercicios" component={Exercises}/>

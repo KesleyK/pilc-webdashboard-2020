@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
-import Appbar from "./components/Appbar";
 import Login from "./components/Login";
 import Routes from "./routes";
 
@@ -15,8 +14,6 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <Provider store={store}>
-          <Login />
-          <Appbar />
           <Routes />
         </Provider>
       </ThemeProvider>

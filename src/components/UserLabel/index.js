@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -13,6 +14,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import useStyles from './styles';
 
 const UserLabel = () => {
+    const history = useHistory();
     const [anchorEl, setAnchorEl] = useState(null);
     const [openMudarSenha, setOpenMudarSenha] = useState(false);
     const [openAdicionarAluno, setOpenAdicionarAluno] = useState(false);
@@ -75,7 +77,7 @@ const UserLabel = () => {
                         <AdicionarProfessor open={openAdicionarProfessor} close={ClosePopups} token={user.token}/>
                         <MenuItem onClick={()=>{setOpenAdicionarAluno(!openAdicionarAluno)}}>Adicionar Aluno</MenuItem>
                         <MenuItem onClick={()=>{setOpenAdicionarProfessor(!openAdicionarProfessor)}}>Adicionar Professor</MenuItem>
-                        <MenuItem>Turma</MenuItem>
+                        <MenuItem onClick={()=>{console.log(history.push('/turma'))}}>Turma</MenuItem>
                     </>
                     :null}
                     <MenuItem onClick={logout}>Sair</MenuItem>
