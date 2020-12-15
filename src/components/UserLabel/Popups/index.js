@@ -287,9 +287,4 @@ export const AdicionarProfessor = ({open, close, token}) => {
         </Modal>
     );
 }
-export const AdicionarTurma = ({open, close, token}) => {
-    return null
-}
-export const AdicionarAlunoTurma = ({open, close, token}) => {
-   return null;
-}
+
