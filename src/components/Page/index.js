@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from "react";
 import axios from "../../services/axios-instance";
+import { useHistory } from 'react-router-dom';
 import useStyles from "./style";
 
 import Box from "@material-ui/core/Box";
@@ -16,6 +17,7 @@ import Link from '@material-ui/core/Link';
 
 
 const Page = ( props ) => {
+    const history = useHistory();
     const [pagina,setPagina] = useState({});
     const [jogos, setJogos] = useState([]);
     const classes = useStyles();
@@ -91,7 +93,7 @@ const Page = ( props ) => {
             <Box>
                 {jogos.map(jogo => 
                         <Card className={classes.card}>
-                            <CardActionArea>
+                            <CardActionArea onClick={()=>{history.push('/game/'+jogo.id)}}>
                                 <CardMedia 
                                     component="img"
                                     image={jogo.imgTipo}
