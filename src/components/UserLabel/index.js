@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Typography from "@material-ui/core/Typography";
 import Popover from '@material-ui/core/Popover';
 
-
+import { MudarSenha, AdicionarAluno, AdicionarProfessor } from './Popups';
 
 import {useSelector, useDispatch} from 'react-redux';
 
@@ -14,6 +14,10 @@ import useStyles from './styles';
 
 const UserLabel = () => {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [openMudarSenha, setOpenMudarSenha] = useState(false);
+    const [openAdicionarAluno, setOpenAdicionarAluno] = useState(false);
+    const [openAdicionarProfessor, setOpenAdicionarProfessor] = useState(false);
+    
     const open = Boolean(anchorEl);
     const id = open ? 'popover' : undefined;
     
@@ -23,6 +27,11 @@ const UserLabel = () => {
 
     const dispatch = useDispatch();
 
+    const ClosePopups = () => {
+        setOpenMudarSenha(false)
+        setOpenAdicionarAluno(false)
+        setOpenAdicionarProfessor(false)
+    }
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -58,11 +67,14 @@ const UserLabel = () => {
                     }}
                 >
                     <Typography paragraph className={classes.textCenter}>{user.email}</Typography>
-                    <MenuItem>Mudar Senha</MenuItem>
+                    <MenuItem onClick={()=>{setOpenMudarSenha(!openMudarSenha)}}>Mudar Senha</MenuItem>
+                    <MudarSenha open={openMudarSenha} close={ClosePopups} token={user.token}/>
                     {user.conta == 'professor'? 
                     <>
-                        <MenuItem>Adicionar Aluno</MenuItem>
-                        <MenuItem>Adicionar Professor</MenuItem>
+                        <AdicionarAluno open={openAdicionarAluno} close={ClosePopups} token={user.token}/>
+                        <AdicionarProfessor open={openAdicionarProfessor} close={ClosePopups} token={user.token}/>
+                        <MenuItem onClick={()=>{setOpenAdicionarAluno(!openAdicionarAluno)}}>Adicionar Aluno</MenuItem>
+                        <MenuItem onClick={()=>{setOpenAdicionarProfessor(!openAdicionarProfessor)}}>Adicionar Professor</MenuItem>
                         <MenuItem>Adicionar Turma</MenuItem>
                         <MenuItem>Adicionar Aluno na Turma</MenuItem>
                     </>
