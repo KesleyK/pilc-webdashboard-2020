@@ -39,8 +39,8 @@ const Routes = () => (
             <PriveteRoute exact path="/page" component={Pages}/>
             <PriveteRoute exact path="/page/:id" component={Page}/>
             <PriveteRoute exact path="/game/:id" component={Game}/>
-            <PriveteRouteProfessor exact path="/turma" component={Turma}/>
-            <PriveteRouteProfessor exact path="/turma/:turma" component={Turmas}/>
+            <PriveteRouteProfessor exact path="/turma" component={Turmas}/>
+            <PriveteRouteProfessor exact path="/turma/:turma" component={Turma}/>
         </Switch>
     </BrowserRouter>
 )
