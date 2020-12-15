@@ -3,7 +3,6 @@ import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import Appbar from "./components/Appbar";
 import Login from "./components/Login";
 import Routes from "./routes";
-import Games from "./components/Games";
 
 import theme from "./theme";
 
