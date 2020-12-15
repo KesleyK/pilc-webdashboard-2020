@@ -96,7 +96,7 @@ const Page = ( props ) => {
                             <CardActionArea onClick={()=>{history.push('/game/'+jogo.id)}}>
                                 <CardMedia 
                                     component="img"
-                                    image={jogo.imgTipo}
+                                    image={window.location.origin + jogo.imgTipo}
                                     title={jogo.nome}
                                     alt={jogo.nome}
                                     height="140"
