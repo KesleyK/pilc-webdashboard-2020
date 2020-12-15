@@ -75,8 +75,7 @@ const UserLabel = () => {
                         <AdicionarProfessor open={openAdicionarProfessor} close={ClosePopups} token={user.token}/>
                         <MenuItem onClick={()=>{setOpenAdicionarAluno(!openAdicionarAluno)}}>Adicionar Aluno</MenuItem>
                         <MenuItem onClick={()=>{setOpenAdicionarProfessor(!openAdicionarProfessor)}}>Adicionar Professor</MenuItem>
-                        <MenuItem>Adicionar Turma</MenuItem>
-                        <MenuItem>Adicionar Aluno na Turma</MenuItem>
+                        <MenuItem>Turma</MenuItem>
                     </>
                     :null}
                     <MenuItem onClick={logout}>Sair</MenuItem>
