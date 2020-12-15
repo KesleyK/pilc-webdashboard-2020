@@ -20,6 +20,7 @@ class PlayGround extends React.Component {
     };
     this.start();
   }
+
   handleClick(name, index) {
     if (this.state.openedFrameworks.length == 2) {
       setTimeout(() => {
