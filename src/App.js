@@ -19,7 +19,6 @@ class App extends Component {
           <Login />
           <Appbar />
           <Routes />
-          <Games />
         </Provider>
       </ThemeProvider>
     );

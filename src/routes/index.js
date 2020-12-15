@@ -5,6 +5,9 @@ import Home from '../components/Home';
 import Exercises from '../components/Exercises';
 import Page from '../components/Page';
 import Pages from '../components/Pages';
+import Turma from '../components/Turma';
+import Turmas from '../components/Turmas';
+import Game from '../components/Games';
 
 import { useSelector } from 'react-redux';
 
@@ -18,6 +21,15 @@ const PriveteRoute = ({component : Component, ...restProps}) => {
         )} />
     )
 }
+const PriveteRouteProfessor = ({component : Component, ...restProps}) => {
+    const user = useSelector((state) => state.user);
+    return (
+        (user.conta == 'professor')?
+        (<PriveteRoute {...restProps} component={Component} />):
+        (<Redirect to={{ pathname: '/', state: {from: restProps.location}  }} />)
+    );
+
+}
 
 const Routes = () => (
     <BrowserRouter>
@@ -26,6 +38,9 @@ const Routes = () => (
             <PriveteRoute exact path="/exercicios" component={Exercises}/>
             <PriveteRoute exact path="/page" component={Pages}/>
             <PriveteRoute exact path="/page/:id" component={Page}/>
+            <PriveteRoute exact path="/game/:id" component={Game}/>
+            <PriveteRouteProfessor exact path="/turma" component={Turma}/>
+            <PriveteRouteProfessor exact path="/turma/:turma" component={Turmas}/>
         </Switch>
     </BrowserRouter>
 )
