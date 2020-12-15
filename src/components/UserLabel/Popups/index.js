@@ -287,51 +287,10 @@ export const AdicionarProfessor = ({open, close, token}) => {
         </Modal>
     );
 }
-export const AdicionarTurma = ({open, close}) => {
-    const classes = useStyles();
-    return (
-        <Modal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            className={classes.modal}
-            open={open}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-            timeout: 500,
-            }}
-        >
-            <Fade in={open}>
-                <Box className={classes.paper}>
-                    <IconButton className={classes.iconClose} aria-label="close" color="inherit" size="small" onClick={close}>
-                        <CloseIcon fontSize="inherit" />
-                    </IconButton>
-                    <TextField
-                        className={classes.margin}
-                        label="Senha"
-                        type="password"
-                        InputProps={{
-                            startAdornment: (
-                            <InputAdornment position="start">
-                                <LockIcon />
-                            </InputAdornment>
-                            ),
-                        }}
-                    />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.button}
-                    >
-                        Mudar Senha
-                    </Button>
-                </Box>
-            </Fade>
-
-        </Modal>
-    );
+export const AdicionarTurma = ({open, close, token}) => {
+    
 }
-export const AdicionarAlunoTurma = ({open, close}) => {
+export const AdicionarAlunoTurma = ({open, close, token}) => {
     const classes = useStyles();
     return (
         <Modal
