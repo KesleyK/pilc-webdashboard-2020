@@ -59,6 +59,14 @@ const UserLabel = () => {
                 >
                     <Typography paragraph className={classes.textCenter}>{user.email}</Typography>
                     <MenuItem>Mudar Senha</MenuItem>
+                    {user.conta == 'professor'? 
+                    <>
+                        <MenuItem>Adicionar Aluno</MenuItem>
+                        <MenuItem>Adicionar Professor</MenuItem>
+                        <MenuItem>Adicionar Turma</MenuItem>
+                        <MenuItem>Adicionar Aluno na Turma</MenuItem>
+                    </>
+                    :null}
                     <MenuItem onClick={logout}>Sair</MenuItem>
                 </Popover>
             </Box>
