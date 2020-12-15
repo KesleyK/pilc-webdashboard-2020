@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Typography from "@material-ui/core/Typography";
 import Popover from '@material-ui/core/Popover';
 
-
+import {MudarSenha} from './Popups';
 
 import {useSelector, useDispatch} from 'react-redux';
 
@@ -14,6 +14,8 @@ import useStyles from './styles';
 
 const UserLabel = () => {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [openMudarSenha, setOpenMudarSenha] = useState(false);
+
     const open = Boolean(anchorEl);
     const id = open ? 'popover' : undefined;
     
@@ -23,6 +25,9 @@ const UserLabel = () => {
 
     const dispatch = useDispatch();
 
+    const ClosePopups = () => {
+        setOpenMudarSenha(false)
+    }
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -58,7 +63,8 @@ const UserLabel = () => {
                     }}
                 >
                     <Typography paragraph className={classes.textCenter}>{user.email}</Typography>
-                    <MenuItem>Mudar Senha</MenuItem>
+                    <MenuItem onClick={()=>{setOpenMudarSenha(!openMudarSenha)}}>Mudar Senha</MenuItem>
+                    <MudarSenha open={openMudarSenha} close={ClosePopups} token={user.token}/>
                     {user.conta == 'professor'? 
                     <>
                         <MenuItem>Adicionar Aluno</MenuItem>
