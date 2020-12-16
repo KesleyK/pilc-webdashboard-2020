@@ -77,7 +77,7 @@ const UserLabel = () => {
                         <AdicionarProfessor open={openAdicionarProfessor} close={ClosePopups} token={user.token}/>
                         <MenuItem onClick={()=>{setOpenAdicionarAluno(!openAdicionarAluno)}}>Adicionar Aluno</MenuItem>
                         <MenuItem onClick={()=>{setOpenAdicionarProfessor(!openAdicionarProfessor)}}>Adicionar Professor</MenuItem>
-                        <MenuItem onClick={()=>{console.log(history.push('/turma'))}}>Turma</MenuItem>
+                        <MenuItem onClick={()=>{console.log(history.push('/turma'))}}>Minhas Turma</MenuItem>
                     </>
                     :null}
                     <MenuItem onClick={logout}>Sair</MenuItem>
