@@ -68,19 +68,21 @@ const UserLabel = () => {
                     horizontal: 'center',
                     }}
                 >
-                    <Typography paragraph className={classes.textCenter}>{user.email}</Typography>
-                    <MenuItem onClick={()=>{setOpenMudarSenha(!openMudarSenha)}}>Mudar Senha</MenuItem>
-                    <MudarSenha open={openMudarSenha} close={ClosePopups} token={user.token}/>
-                    {user.conta === 'professor'? 
-                    <>
-                        <AdicionarAluno open={openAdicionarAluno} close={ClosePopups} token={user.token}/>
-                        <AdicionarProfessor open={openAdicionarProfessor} close={ClosePopups} token={user.token}/>
-                        <MenuItem onClick={()=>{setOpenAdicionarAluno(!openAdicionarAluno)}}>Adicionar Aluno</MenuItem>
-                        <MenuItem onClick={()=>{setOpenAdicionarProfessor(!openAdicionarProfessor)}}>Adicionar Professor</MenuItem>
-                        <MenuItem onClick={()=>{console.log(history.push('/turma'))}}>Minhas Turma</MenuItem>
-                    </>
-                    :null}
-                    <MenuItem onClick={logout}>Sair</MenuItem>
+                    <Box className={classes.popover}>
+                        <Typography paragraph className={classes.textCenter}>{user.email}</Typography>
+                        <MenuItem onClick={()=>{setOpenMudarSenha(!openMudarSenha)}}>Mudar Senha</MenuItem>
+                        <MudarSenha open={openMudarSenha} close={ClosePopups} token={user.token}/>
+                        {user.conta === 'professor'? 
+                        <>
+                            <AdicionarAluno open={openAdicionarAluno} close={ClosePopups} token={user.token}/>
+                            <AdicionarProfessor open={openAdicionarProfessor} close={ClosePopups} token={user.token}/>
+                            <MenuItem onClick={()=>{setOpenAdicionarAluno(!openAdicionarAluno)}}>Adicionar Aluno</MenuItem>
+                            <MenuItem onClick={()=>{setOpenAdicionarProfessor(!openAdicionarProfessor)}}>Adicionar Professor</MenuItem>
+                            <MenuItem onClick={()=>{console.log(history.push('/turma'))}}>Minhas Turma</MenuItem>
+                        </>
+                        :null}
+                        <MenuItem onClick={logout}>Sair</MenuItem>
+                    </Box>
                 </Popover>
             </Box>
         );

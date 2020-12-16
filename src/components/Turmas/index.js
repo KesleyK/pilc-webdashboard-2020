@@ -92,7 +92,7 @@ const Turmas = () => {
 
     useEffect(carregarTurmas,[user.matricula]);
     return (
-        <Box>
+        <Box className={classes.main}>
             <Breadcrumbs separator="›">
                 <Link color="inherit" href="/">
                     Home
@@ -101,7 +101,7 @@ const Turmas = () => {
                     Minhas Turmas
                 </Link>
             </Breadcrumbs>
-            <Box className={classes.boxForms}>
+            <Box className={[classes.boxForms,classes.boxContainer]}>
                 <Box className={classes.paper}>
                     {errorMessageAddTurmaAlert}
                     <TextField 
@@ -165,7 +165,7 @@ const Turmas = () => {
                     </Button>
                 </Box>
             </Box>
-            <Box>
+            <Box className={classes.boxContainer}>
                 <List className={classes.list}>
                     {turmas.length > 0?turmas.map(turma=>(
                         <ListItem key={turma.id} className={classes.listItem}>

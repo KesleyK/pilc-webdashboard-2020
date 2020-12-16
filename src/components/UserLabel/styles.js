@@ -11,5 +11,8 @@ export default makeStyles({
         marginTop: 10,
         marginBottom: 10,
         textAlign: "center"
+    },
+    popover:{
+        padding: 15
     }
 })

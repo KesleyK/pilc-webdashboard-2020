@@ -1,11 +1,16 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
+    main:{
+      padding: 30
+    },
     paper: {
         position: "relative",
         display: "flex",
         flexDirection: "column",
         width: "30%",
+        margin: 20,
+        minWidth: 300,
         backgroundColor: theme.palette.background.paper,
         border: "2px solid #000",
         boxShadow: theme.shadows[5],
@@ -25,11 +30,21 @@ export default makeStyles((theme) => ({
       },
       boxForms:{
           display: "flex",
+          flexWrap: "wrap",
           justifyContent: "space-around"
+      },
+      boxContainer:{
+        marginTop: 40,
+        marginBottom: 40
       },
       list:{
         display: "flex",
         flexDirection: "column",
+        border: "2px solid #000",
+        boxShadow: theme.shadows[2],
+        width: "fit-content",
+        margin: "auto !important",
+        padding: 10
       },
       listItem:{
         display: "flex",
