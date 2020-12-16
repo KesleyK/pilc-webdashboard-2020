@@ -14,4 +14,7 @@ export default makeStyles((theme) => ({
   paragraph: {
     textAlign: "justify",
   },
+  link: {
+    color: "#1C82B4",
+  },
 }));

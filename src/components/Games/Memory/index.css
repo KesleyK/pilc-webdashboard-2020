@@ -19,6 +19,7 @@
   transition: 0.6s;
   transform-style: preserve-3d;
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
 }
 
 .front {

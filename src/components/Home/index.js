@@ -80,7 +80,9 @@ export default function Home() {
         condimentum lacinia quis vel eros.
       </Typography>
       <Typography>
-        <Link href="/page">Prosseguir para próxima página &rarr;</Link>
+        <Link href="/page" className={classes.link}>
+          Prosseguir para próxima página &rarr;
+        </Link>
       </Typography>
     </Box>
   );
