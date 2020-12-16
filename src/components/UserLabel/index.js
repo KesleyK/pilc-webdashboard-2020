@@ -71,7 +71,7 @@ const UserLabel = () => {
                     <Typography paragraph className={classes.textCenter}>{user.email}</Typography>
                     <MenuItem onClick={()=>{setOpenMudarSenha(!openMudarSenha)}}>Mudar Senha</MenuItem>
                     <MudarSenha open={openMudarSenha} close={ClosePopups} token={user.token}/>
-                    {user.conta == 'professor'? 
+                    {user.conta === 'professor'? 
                     <>
                         <AdicionarAluno open={openAdicionarAluno} close={ClosePopups} token={user.token}/>
                         <AdicionarProfessor open={openAdicionarProfessor} close={ClosePopups} token={user.token}/>

@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import Box from "@material-ui/core/Box";
 import EmojiEventsTwoToneIcon from "@material-ui/icons/EmojiEventsTwoTone";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import MemoryGame from "./Memory";
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';

@@ -26,7 +26,7 @@ const PriveteRoute = ({component : Component, ...restProps}) => {
 const PriveteRouteProfessor = ({component : Component, ...restProps}) => {
     const user = useSelector((state) => state.user);
     return (
-        (user.conta == 'professor')?
+        (user.conta === 'professor')?
         (<PriveteRoute {...restProps} component={Component} />):
         (<Redirect to={{ pathname: '/', state: {from: restProps.location}  }} />)
     );

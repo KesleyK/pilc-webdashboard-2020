@@ -80,7 +80,7 @@ const Turmas = () => {
         body.append("function", "getTurmasProfessor");
         body.append("professor", user.matricula);
         axios.post('/', body).then(res=>{
-            if(res.data.status == 'sucesso'){
+            if(res.data.status === 'sucesso'){
                 setTurmas(res.data.dados);
             }
         }).catch(err =>{
@@ -88,7 +88,7 @@ const Turmas = () => {
         })
     }
 
-    useEffect(carregarTurmas,[]);
+    useEffect(carregarTurmas,[user.matricula]);
     return (
         <Box>
             <Box className={classes.boxForms}>
@@ -158,12 +158,12 @@ const Turmas = () => {
             <Box>
                 <List>
                     {turmas.map(turma=>(
-                        <ListItem>
+                        <ListItem key={turma.id}>
                             <ListItemText>{turma?.id}</ListItemText>
                             <ListItemText>Professor: {turma?.nome} - {turma?.email}</ListItemText>
                             <List>
                                 {turma.alunos.map(aluno=>(
-                                    <ListItem>
+                                    <ListItem key={aluno?.matricula}>
                                         <ListItemText>{aluno?.nome} | {aluno?.matricula}</ListItemText>
                                     </ListItem>
                                 ))}

@@ -41,7 +41,7 @@ export default function TransitionsModal() {
       axios
         .post("/", body)
         .then((res) => {
-          if (res.data.dados != "Token valido!") {
+          if (res.data.dados !== "Token valido!") {
             storeLogout()
             setErrorMessage("Sessão encerrada.");
           }
@@ -53,7 +53,7 @@ export default function TransitionsModal() {
           setLoading(false);
         });
     }
-  }, []);
+  }, [userToken]);
 
   const storeLogin = (token) => {
     dispatch({ type: "Login", token: token });
