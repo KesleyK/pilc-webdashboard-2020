@@ -10,6 +10,10 @@ import PersonIcon from '@material-ui/icons/Person';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
 import Alert from "@material-ui/lab/Alert";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
 
 const Turmas = () => {
     const classes = useStyles();
@@ -152,7 +156,21 @@ const Turmas = () => {
                 </Box>
             </Box>
             <Box>
-                Turmas : {JSON.stringify(turmas)}
+                <List>
+                    {turmas.map(turma=>(
+                        <ListItem>
+                            <ListItemText>{turma?.id}</ListItemText>
+                            <ListItemText>Professor: {turma?.nome} - {turma?.email}</ListItemText>
+                            <List>
+                                {turma.alunos.map(aluno=>(
+                                    <ListItem>
+                                        <ListItemText>{aluno?.nome} | {aluno?.matricula}</ListItemText>
+                                    </ListItem>
+                                ))}
+                            </List>
+                        </ListItem>
+                    ))}
+                </List>
             </Box>
         </Box>
     );
