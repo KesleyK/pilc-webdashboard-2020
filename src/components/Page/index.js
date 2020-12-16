@@ -29,7 +29,7 @@ const Page = ( props ) => {
         body.append("tag", tag);
         axios.post('/', body)
         .then(el => {
-            if(el.data.status == 'sucesso'){
+            if(el.data.status === 'sucesso'){
                 let arr = [...jogos, ...el.data.dados]
                 setJogos(
                     arr.filter(function(este, i) {
@@ -48,7 +48,7 @@ const Page = ( props ) => {
         body.append("id", props.match.params.id);
         axios.post('/', body)
         .then(el => {
-            if(el.data.status == 'sucesso'){
+            if(el.data.status === 'sucesso'){
                 setPagina(el.data.dados);
                 el.data.dados.tags.forEach(tag => {
                     getJogos(tag)
@@ -118,7 +118,7 @@ const Page = ( props ) => {
                         </Card>
                 )}
             </Box>
-            {Object.keys(pagina).length != 0?<VideoCarousel />:null}
+            {Object.keys(pagina).length !== 0?<VideoCarousel />:null}
         </Box>
     );
 }

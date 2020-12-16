@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
-import Login from "./components/Login";
 import Routes from "./routes";
 
 import theme from "./theme";

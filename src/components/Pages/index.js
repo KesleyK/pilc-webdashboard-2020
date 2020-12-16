@@ -28,7 +28,7 @@ const Pages = ({history}) => {
         body.append("function", "getPaginas");
         axios.post('/', body)
         .then(el => {
-            if(el.data.status == 'sucesso'){
+            if(el.data.status === 'sucesso'){
                 setPaginas(el.data.dados);
                 console.log(el.data.dados)
             }
@@ -76,7 +76,7 @@ const Pages = ({history}) => {
                     )}
                 </Box>
             </Box>
-            {paginas.length != 0?<VideoCarousel />:null}
+            {paginas.length !== 0?<VideoCarousel />:null}
         </Box>
     );
 }
