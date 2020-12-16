@@ -27,6 +27,7 @@ class Game extends Component {
   _renderInputPanel() {
     const hasAttemptsLeft = this.props.guesses > 0;
     const gameWon = this.props.gameState === GAME_WON;
+
     const content = hasAttemptsLeft ? (
       gameWon ? (
         this._renderGameFinished("Parabéns! 🤗 🏆 🤗", "Game-GameWin")
@@ -54,6 +55,8 @@ class Game extends Component {
   }
 
   _renderGameFinished(message, cssClass) {
+    this.props.onFinishGame();
+
     return (
       <div className={cssClass}>
         <span>{message}</span>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import Box from "@material-ui/core/Box";
@@ -14,6 +15,7 @@ import axios from "../../services/axios-instance";
 import useStyles from "./styles";
 
 export default function Exercises(props) {
+  const userToken = useSelector((state) => state.user.token);
   const classes = useStyles();
   const history = useHistory();
   const [gameData, setGameData] = useState(null);
@@ -34,18 +36,42 @@ export default function Exercises(props) {
       .catch(() => {
         console.log("Erro");
       });
-  }, []);
+  }, [props.match.params.id]);
+
+  const onFinishGameHandler = () => {
+    const gameId = props.match.params.id;
+
+    const body = new FormData();
+    body.append("function", "responder");
+    body.append("class", "jogos");
+    body.append("token", userToken);
+    body.append("jogo", gameId);
+    body.append("pts", 10);
+
+    axios
+      .post("/", body)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log("Erro");
+      });
+  };
 
   const onSelectGameHandler = () => {
     switch (gameData.Tipo) {
       case "Forca":
         const word = gameData.Jogo.palavra;
 
-        return <HangmanGame word={word} />;
+        return (
+          <HangmanGame word={word} onFinish={() => onFinishGameHandler()} />
+        );
       case "Memoria":
         const words = gameData.Jogo.map((carta) => carta.carta1);
 
-        return <MemoryGame words={words} />;
+        return (
+          <MemoryGame words={words} onFinish={() => onFinishGameHandler()} />
+        );
       default:
         return null;
     }

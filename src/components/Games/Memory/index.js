@@ -43,11 +43,11 @@ class PlayGround extends React.Component {
     let finalizedFrameworks = this.state.finalizedFrameworks;
 
     const completedFrameworks = this.state.finalizedFrameworks.filter(
-      (fram) => fram.complete
+      (fram) => !fram.close
     );
 
     if (completedFrameworks.length === this.state.finalizedFrameworks.length) {
-      return alert("opa");
+      return this.props.onFinish();
     }
 
     if (
@@ -108,8 +108,6 @@ class PlayGround extends React.Component {
     return array;
   }
   render() {
-    console.log(this.props);
-
     return (
       <div className="playground">
         {this.state.finalizedFrameworks.map((framework, index) => {

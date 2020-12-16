@@ -21,6 +21,7 @@ class App extends Component {
     const gameProps = {
       onLetterClick: this.onLetterClick,
       onRestartClick: this.onRestartClick,
+      onFinishGame: this.props.onFinish,
       ...this.state,
     };
 
