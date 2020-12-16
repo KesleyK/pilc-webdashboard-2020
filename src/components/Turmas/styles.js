@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
     main:{
-      padding: 30
+      ...theme.box.main
     },
     paper: {
         position: "relative",

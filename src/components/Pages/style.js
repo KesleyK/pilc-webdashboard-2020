@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   mainBox: {
+    ...theme.box.main,
     display: "flex",
     flexDirection: "column",
   },

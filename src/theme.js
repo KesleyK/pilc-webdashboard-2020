@@ -15,4 +15,9 @@ export default createMuiTheme({
       fontWeight: "bold",
     },
   },
+  box:{
+    main:{
+      padding: 30
+    }
+  },
 });

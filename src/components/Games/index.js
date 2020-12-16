@@ -93,7 +93,7 @@ export default function Exercises(props) {
   }
 
   return (
-    <>
+    <Box className={classes.main}>
       <Breadcrumbs separator="›">
         <Link color="inherit" href="/">
           Home
@@ -128,6 +128,6 @@ export default function Exercises(props) {
           <div className={classes.exerciseContent}>{selectedGame}</div>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 }
