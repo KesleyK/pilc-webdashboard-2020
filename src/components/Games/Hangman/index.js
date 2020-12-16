@@ -14,7 +14,7 @@ class App extends Component {
     this.onRestartClick = this.onRestartClick.bind(this);
 
     // Random word and new game state data
-    this.state = gameFactory.newGame();
+    this.state = gameFactory.newGame(props.word);
   }
 
   render() {
@@ -82,7 +82,7 @@ class App extends Component {
   onRestartClick(e) {
     e.preventDefault();
 
-    this.setState(gameFactory.newGame());
+    this.setState(gameFactory.newGame(this.props.word));
   }
 }
 

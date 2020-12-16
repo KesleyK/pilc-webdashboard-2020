@@ -5,13 +5,14 @@ export default makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     marginBottom: 50,
+    marginTop: 25,
   },
   leftBox: {
     height: 600,
     backgroundColor: "#eee",
     flexBasis: "22%",
     boxShadow: "rgba(0, 0, 0, .3) 0 2px 5px",
-    padding: "5px",
+    padding: 10,
     borderRadius: 3,
   },
   trophyTitleHolder: {
@@ -43,5 +44,10 @@ export default makeStyles((theme) => ({
     padding: 10,
     border: "2px solid #C9E9F6",
     marginBottom: 10,
+  },
+  rankItem: {
+    marginTop: 15,
+    paddingLeft: 3,
+    color: "#2F7294",
   },
 }));

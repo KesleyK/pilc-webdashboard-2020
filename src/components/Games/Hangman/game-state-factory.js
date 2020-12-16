@@ -1,9 +1,8 @@
-import randomWord from "./random-word";
 import { GAME_STARTED } from "./game-states";
 
 const gameStateFactory = {
-  newGame: () => {
-    const gameWord = randomWord();
+  newGame: (word) => {
+    const gameWord = word;
     return {
       word: gameWord,
       letters: gameWord.split("").map((letter) => ({

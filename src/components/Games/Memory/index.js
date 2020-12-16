@@ -5,14 +5,7 @@ class PlayGround extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      frameworks: [
-        "RNA",
-        "DNA",
-        "PROBABILIDADE",
-        "ESTATÍSTICA",
-        "BIOLOGIA",
-        "GENÉTICA",
-      ],
+      frameworks: [...props.words],
       duplicatedFrameworks: [],
       randomizedFrameworks: [],
       finalizedFrameworks: [],
@@ -53,10 +46,7 @@ class PlayGround extends React.Component {
       (fram) => fram.complete
     );
 
-    if (
-      completedFrameworks.length + 2 ===
-      this.state.finalizedFrameworks.length
-    ) {
+    if (completedFrameworks.length === this.state.finalizedFrameworks.length) {
       return alert("opa");
     }
 
@@ -118,6 +108,8 @@ class PlayGround extends React.Component {
     return array;
   }
   render() {
+    console.log(this.props);
+
     return (
       <div className="playground">
         {this.state.finalizedFrameworks.map((framework, index) => {
