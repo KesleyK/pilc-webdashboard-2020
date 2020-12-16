@@ -15,6 +15,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
+import Typography from "@material-ui/core/Typography";
 
 const Turmas = () => {
     const classes = useStyles();
@@ -165,20 +166,33 @@ const Turmas = () => {
                 </Box>
             </Box>
             <Box>
-                <List>
-                    {turmas.map(turma=>(
-                        <ListItem key={turma.id}>
-                            <ListItemText>{turma?.id}</ListItemText>
-                            <ListItemText>Professor: {turma?.nome} - {turma?.email}</ListItemText>
-                            <List>
-                                {turma.alunos.map(aluno=>(
-                                    <ListItem key={aluno?.matricula}>
-                                        <ListItemText>{aluno?.nome} | {aluno?.matricula}</ListItemText>
+                <List className={classes.list}>
+                    {turmas.length > 0?turmas.map(turma=>(
+                        <ListItem key={turma.id} className={classes.listItem}>
+                            <ListItemText className={classes.textAlignCenter}
+                                primary={'Turma '+turma?.id}
+                                secondary={'Professor '+turma?.nome+' - '+turma?.email}
+                            />
+                            <List className={classes.list}>
+                                <ListItemText className={classes.textAlignCenter}>Alunos</ListItemText>
+                                {turma.alunos.length >0? turma.alunos.map(aluno=>(
+                                    <ListItem key={aluno?.matricula} className={classes.listItem}>
+                                        <ListItemText
+                                            className={classes.textAlignCenter}
+                                            primary={aluno?.nome}
+                                            secondary={
+                                                aluno?.matricula
+                                            }
+                                        />
                                     </ListItem>
-                                ))}
+                                )):
+                                (<ListItemText>Nenhum aluno na turma</ListItemText>)
+                                }
                             </List>
                         </ListItem>
-                    ))}
+                    )):
+                    (<ListItemText>Professor ainda não tem nenhua turma</ListItemText>)
+                    }
                 </List>
             </Box>
         </Box>

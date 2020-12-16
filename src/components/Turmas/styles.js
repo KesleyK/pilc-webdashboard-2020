@@ -26,5 +26,18 @@ export default makeStyles((theme) => ({
       boxForms:{
           display: "flex",
           justifyContent: "space-around"
+      },
+      list:{
+        display: "flex",
+        flexDirection: "column",
+      },
+      listItem:{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center"
+      },
+      textAlignCenter:{
+        textAlign: "center",
       }
 }))
