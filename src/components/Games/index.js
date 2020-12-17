@@ -9,7 +9,6 @@ import MemoryGame from "./Memory";
 import HangmanGame from "./Hangman";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
-import Button from "@material-ui/core/Button";
 import axios from "../../services/axios-instance";
 
 import useStyles from "./styles";

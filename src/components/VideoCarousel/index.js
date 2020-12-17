@@ -41,7 +41,7 @@ export default function VideoCarousel() {
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}
         numberOfCards={3}
-        gutter={10}
+        gutter={15}
         leftChevron={<button className={classes.button}>{"<"}</button>}
         rightChevron={<button className={classes.button}>{">"}</button>}
         outsideChevron
