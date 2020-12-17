@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import ItemsCarousel from "react-items-carousel";
+import ReactPlayer from "react-player";
 
 import useStyles from "./styles";
 
 const mediaJSON = [
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+  "https://www.youtube.com/watch?v=W4kiJ3V2Z04",
+  "https://www.youtube.com/watch?v=shJYZDzf4bg&t=101s",
+  "https://www.youtube.com/watch?v=UBfInkTvqt8",
+  "https://www.youtube.com/watch?v=b0cZLgTA7hs",
+  "https://www.youtube.com/watch?v=blEUTcx16N8",
+  "https://www.youtube.com/watch?v=8g571hUvgeo",
 ];
 
 export default function VideoCarousel() {
@@ -22,18 +20,18 @@ export default function VideoCarousel() {
 
   const renderedVideos = mediaJSON.map((video, i) => {
     return (
-      <video
-        height="200"
+      <ReactPlayer
         style={{
           backgroundColor: "#eee",
           boxShadow: "rgba(0,0,0,.6) 0 2px 5px",
           borderRadius: 7,
+          margin: "20px 5px",
+          height: "100%",
         }}
-        width="260"
-        controls
-      >
-        <source src={video} type="video/mp4" />
-      </video>
+        height="220px"
+        width="100%"
+        url={video}
+      />
     );
   });
 
@@ -42,7 +40,7 @@ export default function VideoCarousel() {
       <ItemsCarousel
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}
-        numberOfCards={4}
+        numberOfCards={3}
         gutter={10}
         leftChevron={<button className={classes.button}>{"<"}</button>}
         rightChevron={<button className={classes.button}>{">"}</button>}

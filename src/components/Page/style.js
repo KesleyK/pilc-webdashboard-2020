@@ -28,7 +28,7 @@ export default makeStyles((theme) => ({
   },
   cardsHolder: {
     display: "flex",
-    marginBottom: 80,
+    marginBottom: 50,
     justifyContent: "center",
   },
   card: {
