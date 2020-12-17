@@ -19,6 +19,7 @@ export default function Exercises(props) {
   const history = useHistory();
   const [initialTime, setInitialTime] = useState(null);
   const [gameData, setGameData] = useState(null);
+  const [ranking, setRanking] = useState([]);
   const [gameStatus, setGameStatus] = useState(null);
 
   useEffect(() => {
@@ -33,12 +34,29 @@ export default function Exercises(props) {
       .post("/", body)
       .then((res) => {
         setGameData(res.data.dados);
+        setRanking(res.data.dados.ranking)
         setInitialTime(new Date());
       })
       .catch(() => {
         console.log("Erro");
       });
   }, [props.match.params.id]);
+
+  const atualizarRanking = () => {
+    let body = new FormData();
+    body.append("class", "jogos");
+    body.append("function", "getjogo");
+    body.append("id", props.match.params.id);
+
+    axios
+      .post("/", body)
+      .then((res) => {
+        setRanking(res.data.dados.ranking)
+      })
+      .catch(() => {
+        console.log("Erro");
+      });
+  }
 
   const onFinishGameHandler = (gameStatus, gameWeight) => {
     if (gameStatus !== "WIN") {
@@ -64,18 +82,19 @@ export default function Exercises(props) {
     axios
       .post("/", body)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data)
       })
       .catch((err) => {
         console.log("Erro");
       })
       .finally(() => {
+        atualizarRanking();
         setGameStatus("WIN");
       });
   };
 
-  const onSelectGameHandler = () => {
-    switch (gameData.Tipo) {
+  const SelectGameHandler = () => {
+    switch (gameData?.Tipo) {
       case "Forca":
         const word = gameData.Jogo.palavra;
         const wordLength = word.length;
@@ -101,39 +120,33 @@ export default function Exercises(props) {
     }
   };
 
-  const onShowRankingHandler = () => {
-    return gameData.ranking.map((item, index) => (
+  const ShowRankingHandler = () => {
+    return ranking.length > 0 !== undefined?ranking.map((item, index) => (
       <p key={index} className={classes.rankItem}>
-        {item.nome} - {parseFloat(item.pontuacao).toFixed(2)} pts
+        {item?.nome} - {parseFloat(item?.pontuacao).toFixed(2)} pts
       </p>
-    ));
+    )):null;
   };
 
-  let selectedGame;
-  let rankData;
-
-  if (gameData) {
-    selectedGame = onSelectGameHandler();
-    rankData = onShowRankingHandler();
+  const FinishButton = () => {
+    if (gameStatus === "GAME_OVER") {
+      return (
+        <Typography color="secondary" style={{ fontWeight: "bold" }}>
+          GAME OVER! Estude mais e tente novamente.
+        </Typography>
+      );
+    }
+    if (gameStatus === "WIN") {
+      return (
+        <Typography color="primary" style={{ fontWeight: "bold" }}>
+          Parabéns! Você finalizou o jogo com êxito.
+        </Typography>
+      );
+    }
+    return null;
   }
 
-  let finishButton;
 
-  if (gameStatus === "GAME_OVER") {
-    finishButton = (
-      <Typography color="secondary" style={{ fontWeight: "bold" }}>
-        GAME OVER! Estude mais e tente novamente.
-      </Typography>
-    );
-  }
-
-  if (gameStatus === "WIN") {
-    finishButton = (
-      <Typography color="primary" style={{ fontWeight: "bold" }}>
-        Parabéns! Você finalizou o jogo com êxito.
-      </Typography>
-    );
-  }
 
   return (
     <Box className={classes.main}>
@@ -164,12 +177,12 @@ export default function Exercises(props) {
               Ranking Parcial
             </Typography>
           </div>
-          {rankData}
+          <ShowRankingHandler />
         </Box>
 
         <Box className={classes.rightBox}>
-          <div className={classes.exerciseContent}>{selectedGame}</div>
-          <div className={classes.rightBottomBox}>{finishButton}</div>
+          <div className={classes.exerciseContent}><SelectGameHandler /></div>
+          <div className={classes.rightBottomBox}><FinishButton /></div>
         </Box>
       </Box>
     </Box>
