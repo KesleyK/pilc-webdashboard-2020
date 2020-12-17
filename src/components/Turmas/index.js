@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import useStyles from "./styles";
 import axios from "../../services/axios-instance";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
@@ -18,6 +19,7 @@ import Link from '@material-ui/core/Link';
 import Typography from "@material-ui/core/Typography";
 
 const Turmas = () => {
+    const history = useHistory();
     const classes = useStyles();
     const user = useSelector((state) => state.user);
     const [turmas, setTurmas] = useState([]);
@@ -169,10 +171,14 @@ const Turmas = () => {
                 <List className={classes.list}>
                     {turmas.length > 0?turmas.map(turma=>(
                         <ListItem key={turma.id} className={classes.listItem}>
-                            <ListItemText className={classes.textAlignCenter}
-                                primary={'Turma '+turma?.id}
-                                secondary={'Professor '+turma?.nome+' - '+turma?.email}
-                            />
+                            <Box className={classes.marginV}>
+                                <Button variant="outlined" onClick={()=>{history.push('/turma/'+turma?.id)}}>
+                                    <ListItemText className={classes.textAlignCenter}
+                                        primary={'Turma '+turma?.id}
+                                        secondary={'Professor '+turma?.nome+' - '+turma?.email}
+                                    />
+                                </Button>
+                            </Box>
                             <List className={classes.list}>
                                 <ListItemText className={classes.textAlignCenter}>Alunos</ListItemText>
                                 {turma.alunos.length >0? turma.alunos.map(aluno=>(

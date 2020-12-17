@@ -52,6 +52,10 @@ export default makeStyles((theme) => ({
         alignItems: "center",
         justifyContent: "center"
       },
+      marginV:{
+        marginBottom: 20,
+        marginTop: 20
+      },
       textAlignCenter:{
         textAlign: "center",
       }
