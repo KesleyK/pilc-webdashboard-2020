@@ -17,6 +17,7 @@ export default function Exercises(props) {
   const userToken = useSelector((state) => state.user.token);
   const classes = useStyles();
   const history = useHistory();
+  const [initialTime, setInitialTime] = useState(null);
   const [gameData, setGameData] = useState(null);
   const [gameStatus, setGameStatus] = useState(null);
 
@@ -32,16 +33,23 @@ export default function Exercises(props) {
       .post("/", body)
       .then((res) => {
         setGameData(res.data.dados);
+        setInitialTime(new Date());
       })
       .catch(() => {
         console.log("Erro");
       });
   }, [props.match.params.id]);
 
-  const onFinishGameHandler = (gameStatus) => {
-    console.log(gameStatus);
+  const onFinishGameHandler = (gameStatus, gameWeight) => {
     if (gameStatus !== "WIN") {
       return setGameStatus("GAME_OVER");
+    }
+
+    const elapsedTime = Math.abs(new Date() - initialTime) / 1000;
+    let pts = (gameWeight * 600) / elapsedTime;
+
+    if (pts < 0) {
+      pts = 0;
     }
 
     const gameId = props.match.params.id;
@@ -51,7 +59,7 @@ export default function Exercises(props) {
     body.append("class", "jogos");
     body.append("token", userToken);
     body.append("jogo", gameId);
-    body.append("pts", 10);
+    body.append("pts", pts);
 
     axios
       .post("/", body)
@@ -70,20 +78,22 @@ export default function Exercises(props) {
     switch (gameData.Tipo) {
       case "Forca":
         const word = gameData.Jogo.palavra;
+        const wordLength = word.length;
 
         return (
           <HangmanGame
             word={word}
-            onFinish={(status) => onFinishGameHandler(status)}
+            onFinish={(status) => onFinishGameHandler(status, wordLength / 2)}
           />
         );
       case "Memoria":
         const words = gameData.Jogo.map((carta) => carta.carta1);
+        const wordsLength = words.length;
 
         return (
           <MemoryGame
             words={words}
-            onFinish={(status) => onFinishGameHandler(status)}
+            onFinish={(status) => onFinishGameHandler(status, wordsLength)}
           />
         );
       default:
@@ -94,7 +104,7 @@ export default function Exercises(props) {
   const onShowRankingHandler = () => {
     return gameData.ranking.map((item, index) => (
       <p key={index} className={classes.rankItem}>
-        {item.nome} - {item.pontuacao}pts
+        {item.nome} - {parseFloat(item.pontuacao).toFixed(2)} pts
       </p>
     ));
   };
