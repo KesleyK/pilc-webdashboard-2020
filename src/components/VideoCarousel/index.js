@@ -3,6 +3,7 @@ import ItemsCarousel from "react-items-carousel";
 import ReactPlayer from "react-player";
 
 import useStyles from "./styles";
+import { Typography } from "@material-ui/core";
 
 const mediaJSON = [
   "https://www.youtube.com/watch?v=W4kiJ3V2Z04",
@@ -37,6 +38,9 @@ export default function VideoCarousel() {
 
   return (
     <div className={classes.root} id="videosholder">
+      <Typography variant="title" className={classes.videosHeading}>
+        Conteúdos relacionados
+      </Typography>
       <ItemsCarousel
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}

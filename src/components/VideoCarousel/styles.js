@@ -21,4 +21,10 @@ export default makeStyles((theme) => ({
       outline: "none",
     },
   },
+  videosHeading: {
+    fontWeight: "bold",
+    fontSize: 20,
+    textTransform: "uppercase",
+    color: "#464646",
+  },
 }));
