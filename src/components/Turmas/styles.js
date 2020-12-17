@@ -40,9 +40,9 @@ export default makeStyles((theme) => ({
       list:{
         display: "flex",
         flexDirection: "column",
-        border: "2px solid #000",
         boxShadow: theme.shadows[2],
         width: "fit-content",
+        minWidth: '50%',
         margin: "auto !important",
         padding: 10
       },
