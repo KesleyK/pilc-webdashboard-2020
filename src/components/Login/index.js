@@ -115,7 +115,7 @@ export default function TransitionsModal() {
             <TextField
               className={classes.margin}
               onChange={(e) => setAccount(e.target.value)}
-              label="Usuário"
+              label="Email"
               autoFocus={true}
               InputProps={{
                 startAdornment: (
