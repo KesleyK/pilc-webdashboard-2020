@@ -192,7 +192,7 @@ const Turmas = () => {
                                         />
                                     </ListItem>
                                 )):
-                                (<ListItemText>Nenhum aluno na turma</ListItemText>)
+                                (<ListItemText className={classes.textAlignCenter} primary={'Nenhum aluno na turma'} />)
                                 }
                             </List>
                         </ListItem>
