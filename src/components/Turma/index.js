@@ -8,6 +8,6 @@ const Turma = (props) => {
     const user = useSelector((state) => state.user);
     const classes = useStyles();
 
-    return <h1>Turma {turma}</h1>;
+    return <h1>Turma {turma}.</h1>;
 }
 export default Turma;
