@@ -47,7 +47,7 @@ class PlayGround extends React.Component {
     );
 
     if (completedFrameworks.length === this.state.finalizedFrameworks.length) {
-      return this.props.onFinish();
+      return this.props.onFinish("WIN");
     }
 
     if (

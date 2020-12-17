@@ -1,8 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
-  main:{
-    ...theme.box.main
+  main: {
+    ...theme.box.main,
   },
   root: {
     display: "flex",
@@ -52,5 +52,8 @@ export default makeStyles((theme) => ({
     marginTop: 15,
     paddingLeft: 3,
     color: "#2F7294",
+  },
+  rightBottomBox: {
+    margin: 20,
   },
 }));

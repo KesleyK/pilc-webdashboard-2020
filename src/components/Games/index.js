@@ -19,6 +19,7 @@ export default function Exercises(props) {
   const classes = useStyles();
   const history = useHistory();
   const [gameData, setGameData] = useState(null);
+  const [gameStatus, setGameStatus] = useState(null);
 
   useEffect(() => {
     const gameId = props.match.params.id;
@@ -38,7 +39,12 @@ export default function Exercises(props) {
       });
   }, [props.match.params.id]);
 
-  const onFinishGameHandler = () => {
+  const onFinishGameHandler = (gameStatus) => {
+    console.log(gameStatus);
+    if (gameStatus !== "WIN") {
+      return setGameStatus("GAME_OVER");
+    }
+
     const gameId = props.match.params.id;
 
     const body = new FormData();
@@ -55,6 +61,9 @@ export default function Exercises(props) {
       })
       .catch((err) => {
         console.log("Erro");
+      })
+      .finally(() => {
+        setGameStatus("WIN");
       });
   };
 
@@ -64,13 +73,19 @@ export default function Exercises(props) {
         const word = gameData.Jogo.palavra;
 
         return (
-          <HangmanGame word={word} onFinish={() => onFinishGameHandler()} />
+          <HangmanGame
+            word={word}
+            onFinish={(status) => onFinishGameHandler(status)}
+          />
         );
       case "Memoria":
         const words = gameData.Jogo.map((carta) => carta.carta1);
 
         return (
-          <MemoryGame words={words} onFinish={() => onFinishGameHandler()} />
+          <MemoryGame
+            words={words}
+            onFinish={(status) => onFinishGameHandler(status)}
+          />
         );
       default:
         return null;
@@ -87,9 +102,28 @@ export default function Exercises(props) {
 
   let selectedGame;
   let rankData;
+
   if (gameData) {
     selectedGame = onSelectGameHandler();
     rankData = onShowRankingHandler();
+  }
+
+  let finishButton;
+
+  if (gameStatus === "GAME_OVER") {
+    finishButton = (
+      <Typography color="secondary" style={{ fontWeight: "bold" }}>
+        GAME OVER! Estude mais e tente novamente.
+      </Typography>
+    );
+  }
+
+  if (gameStatus === "WIN") {
+    finishButton = (
+      <Typography color="primary" style={{ fontWeight: "bold" }}>
+        Parabéns! Você finalizou o jogo com êxito.
+      </Typography>
+    );
   }
 
   return (
@@ -126,6 +160,7 @@ export default function Exercises(props) {
 
         <Box className={classes.rightBox}>
           <div className={classes.exerciseContent}>{selectedGame}</div>
+          <div className={classes.rightBottomBox}>{finishButton}</div>
         </Box>
       </Box>
     </Box>

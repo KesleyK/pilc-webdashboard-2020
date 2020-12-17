@@ -30,7 +30,7 @@ class Game extends Component {
 
     const content = hasAttemptsLeft ? (
       gameWon ? (
-        this._renderGameFinished("Parabéns! 🤗 🏆 🤗", "Game-GameWin")
+        this._renderGameFinished("WIN")
       ) : (
         <div className="Game-VirtualKeyboard">
           <VirtualKeyboard
@@ -40,7 +40,7 @@ class Game extends Component {
         </div>
       )
     ) : (
-      this._renderGameFinished("Tente novamente! ☠️", "Game-GameOver")
+      this._renderGameFinished("GAME_OVER")
     );
 
     return (
@@ -54,18 +54,8 @@ class Game extends Component {
     );
   }
 
-  _renderGameFinished(message, cssClass) {
-    this.props.onFinishGame();
-
-    return (
-      <div className={cssClass}>
-        <span>{message}</span>
-        <RestartButton
-          onClick={this.props.onRestartClick}
-          gameState={this.props.gameState}
-        />
-      </div>
-    );
+  _renderGameFinished(status) {
+    this.props.onFinishGame(status);
   }
 
   _renderWord() {
