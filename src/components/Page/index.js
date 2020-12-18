@@ -123,14 +123,14 @@ const Page = (props) => {
                   {jogo.nome}
                 </Typography>
               </CardContent>
-              <CardActions>
+              <CardActions className={classes.chipsHolder}>
                 {jogo.tags
                   ? jogo.tags.map((tag) => (
                       <Chip
                         variant="outlined"
                         size="small"
                         label={tag}
-                        className={classes.mx5}
+                        className={classes.chips}
                       />
                     ))
                   : null}

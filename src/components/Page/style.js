@@ -58,4 +58,13 @@ export default makeStyles((theme) => ({
     width: 300,
     margin: "30px",
   },
+  chips:{
+    margin: '3px 1px'
+  },
+  chipsHolder:{
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap"
+  }
 }));
