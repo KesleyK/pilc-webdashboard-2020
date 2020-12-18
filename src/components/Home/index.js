@@ -57,24 +57,6 @@ export default function Home() {
       <Typography variant="h1" className={classes.heading}>
         Tutorial
       </Typography>
-      {user?.conta === 'aluno'?(
-      <>
-        <br/>
-        <Typography variant="h5" className={classes.heading}>
-          Exemplo da navegação do portal
-        </Typography>
-        <CardMedia
-          component="img"
-          image={window.location.origin +'/img/PaginacaoAluno.gif'}
-          title={'Exemplo da navegação do portal'}
-          alt={'Gif de Exemplo da navegação do portal'}
-          height="auto"
-          width="auto"
-          className={classes.cardMedia}
-        />
-      </>
-      ):(null)
-      }
       <br/>
       <Typography variant="h5" className={classes.heading}>
         Mudança de senha
