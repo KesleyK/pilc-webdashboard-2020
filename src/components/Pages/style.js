@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
     flexDirection: "column",
   },
   pageBox: {
-    width: "80vw",
+    width: "90vw",
     paddingTop: 40,
     paddingBottom: 80,
     display: "flex",
