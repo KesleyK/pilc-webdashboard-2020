@@ -20,4 +20,11 @@ export default makeStyles((theme) => ({
   link: {
     color: "#1C82B4",
   },
+  cardMedia:{
+    maxWidth: '70%',
+    margin:'20px auto'
+  },
+  txACenter:{
+    textAlign: "center"
+  }
 }));

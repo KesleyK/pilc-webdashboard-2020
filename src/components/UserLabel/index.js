@@ -69,7 +69,7 @@ const UserLabel = () => {
                     }}
                 >
                     <Box className={classes.popover}>
-                        <Typography paragraph className={classes.textCenter}>{user.nome}</Typography>
+                        <MenuItem disabled={true}>{user.nome}</MenuItem>
                         <MenuItem onClick={()=>{setOpenMudarSenha(!openMudarSenha)}}>Mudar Senha</MenuItem>
                         <MudarSenha open={openMudarSenha} close={ClosePopups} token={user.token}/>
                         {user.conta === 'professor'? 
