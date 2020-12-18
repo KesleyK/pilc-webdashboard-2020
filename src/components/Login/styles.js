@@ -9,7 +9,8 @@ export default makeStyles((theme) => ({
   paper: {
     display: "flex",
     flexDirection: "column",
-    width: "30%",
+    maxWidth: '90vw',
+    width: "450px",
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
