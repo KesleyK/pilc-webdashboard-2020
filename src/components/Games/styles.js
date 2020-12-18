@@ -41,7 +41,7 @@ export default makeStyles((theme) => ({
   },
   exerciseContent: {
     backgroundColor: "#fff",
-    height: "90%",
+    height: "85%",
     borderRadius: 10,
     padding: 20,
     border: "2px solid #fff",
@@ -55,5 +55,9 @@ export default makeStyles((theme) => ({
   },
   rightBottomBox: {
     margin: 20,
+  },
+  gameTitle: {
+    textAlign: "center",
+    padding: "3px 0",
   },
 }));
