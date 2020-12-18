@@ -6,6 +6,14 @@ export default makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   },
+  h2:{
+    fontSize: '1.5em',
+    lineHeight: 3
+  },
+  p:{
+    fontSize: '1em',
+    lineHeight: 1.5
+  },
   containerCenter: {
     display: "flex",
     flexDirection: "column",

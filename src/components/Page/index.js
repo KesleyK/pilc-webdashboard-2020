@@ -98,7 +98,7 @@ const Page = (props) => {
             ? pagina.body
                 .split("\n")
                 .map((paragraph) => (
-                  <Typography paragraph>{paragraph}</Typography>
+                  <Typography  component={paragraph.slice(0,2) === 'h2'?'h2':'p'} className={paragraph.slice(0,2) === 'h2'?classes.h2:classes.p}>{paragraph.slice(0,2) === 'h2'?paragraph.slice(2):paragraph}</Typography>
                 ))
             : null}
         </Box>
