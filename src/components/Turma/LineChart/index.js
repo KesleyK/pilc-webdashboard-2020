@@ -23,7 +23,20 @@ const LineChart = (props) => {
             data={data} 
             width={50}
             height={500}
-            options={{ maintainAspectRatio: false }}
+            options={
+              { 
+              maintainAspectRatio: false, 
+              responsive: true, 
+              scales: {
+                yAxes: [{
+                    display:true,
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+          }
+        }
         />
         );
 }
