@@ -34,7 +34,7 @@ export default function Exercises(props) {
       .post("/", body)
       .then((res) => {
         setGameData(res.data.dados);
-        setRanking(res.data.dados.ranking)
+        setRanking(res.data.dados.ranking);
         setInitialTime(new Date());
       })
       .catch(() => {
@@ -51,12 +51,12 @@ export default function Exercises(props) {
     axios
       .post("/", body)
       .then((res) => {
-        setRanking(res.data.dados.ranking)
+        setRanking(res.data.dados.ranking);
       })
       .catch(() => {
         console.log("Erro");
       });
-  }
+  };
 
   const onFinishGameHandler = (gameStatus, gameWeight) => {
     if (gameStatus !== "WIN") {
@@ -82,7 +82,7 @@ export default function Exercises(props) {
     axios
       .post("/", body)
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
       })
       .catch((err) => {
         console.log("Erro");
@@ -121,11 +121,13 @@ export default function Exercises(props) {
   };
 
   const ShowRankingHandler = () => {
-    return ranking.length > 0 !== undefined?ranking.map((item, index) => (
-      <p key={index} className={classes.rankItem}>
-        {item?.nome} - {parseFloat(item?.pontuacao).toFixed(2)} pts
-      </p>
-    )):null;
+    return ranking.length > 0 !== undefined
+      ? ranking.map((item, index) => (
+          <p key={index} className={classes.rankItem}>
+            {item?.nome} - {parseFloat(item?.pontuacao).toFixed(2)} pts
+          </p>
+        ))
+      : null;
   };
 
   const FinishButton = () => {
@@ -144,9 +146,16 @@ export default function Exercises(props) {
       );
     }
     return null;
+  };
+
+  let gameTitle;
+  if (gameData) {
+    gameTitle = (
+      <Typography className={classes.gameTitle}>
+        {gameData.nome ? gameData.nome : gameData.Tipo}
+      </Typography>
+    );
   }
-
-
 
   return (
     <Box className={classes.main}>
@@ -181,8 +190,13 @@ export default function Exercises(props) {
         </Box>
 
         <Box className={classes.rightBox}>
-          <div className={classes.exerciseContent}><SelectGameHandler /></div>
-          <div className={classes.rightBottomBox}><FinishButton /></div>
+          {gameTitle}
+          <div className={classes.exerciseContent}>
+            <SelectGameHandler />
+          </div>
+          <div className={classes.rightBottomBox}>
+            <FinishButton />
+          </div>
         </Box>
       </Box>
     </Box>
