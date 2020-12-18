@@ -11,6 +11,7 @@ export default makeStyles((theme) => ({
     paddingTop: 40,
     paddingBottom: 80,
     display: "flex",
+    flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -20,8 +21,9 @@ export default makeStyles((theme) => ({
     alignItems: "center",
   },
   card: {
+    maxWidth: '100%',
     width: 300,
-    margin: "0px 30px",
+    margin: "30px",
   },
   cardActionArea: {
     minHeight: 280,
@@ -29,7 +31,13 @@ export default makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-between",
   },
+  chips:{
+    margin: '3px 1px'
+  },
   chipsHolder: {
     width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap"
   },
 }));

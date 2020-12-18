@@ -78,7 +78,7 @@ const Page = (props) => {
       </Breadcrumbs>
       <Box className={classes.containerCenter}>
         <Box className={classes.pageBox}>
-          <Typography variant="h1">{pagina.titulo}</Typography>
+          <Typography variant="h1" className={[classes.breakWord, classes.h1]}>{pagina.titulo}</Typography>
           {pagina.tags
             ? pagina.tags.map((tag) => {
                 return (

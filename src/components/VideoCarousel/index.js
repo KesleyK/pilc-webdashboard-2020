@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ItemsCarousel from "react-items-carousel";
 import ReactPlayer from "react-player";
 
@@ -17,7 +17,13 @@ const mediaJSON = [
 export default function VideoCarousel() {
   const classes = useStyles();
   const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const [nCards, setNCards] = useState(0);
   const chevronWidth = 40;
+
+  useEffect(()=>{
+    setNCards(parseInt(window.innerWidth/400))
+    window.onresize = (() => {setNCards(parseInt(window.innerWidth/400))})
+  },[])
 
   const renderedVideos = mediaJSON.map((video, i) => {
     return (
@@ -28,6 +34,7 @@ export default function VideoCarousel() {
           borderRadius: 7,
           margin: "20px 5px",
           height: "100%",
+          maxWidth: '100%',
         }}
         height="220px"
         width="100%"
@@ -44,12 +51,13 @@ export default function VideoCarousel() {
       <ItemsCarousel
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}
-        numberOfCards={3}
+        numberOfCards={nCards}
         gutter={15}
         leftChevron={<button className={classes.button}>{"<"}</button>}
         rightChevron={<button className={classes.button}>{">"}</button>}
         outsideChevron
         chevronWidth={chevronWidth}
+        
       >
         {renderedVideos}
       </ItemsCarousel>

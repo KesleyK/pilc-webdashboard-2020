@@ -6,13 +6,24 @@ export default makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   },
+  breakWord:{
+    wordWrap: "normal"
+  },
+  h1:{
+    [theme.breakpoints.down('sm')]:{
+      fontSize: '2em',
+    },
+    margin: "30px auto",
+    textAlign: "center"
+  },
   h2:{
     fontSize: '1.5em',
     lineHeight: 3
   },
   p:{
     fontSize: '1em',
-    lineHeight: 1.5
+    lineHeight: 1.5,
+    textAlign: 'justify',
   },
   containerCenter: {
     display: "flex",
@@ -35,12 +46,16 @@ export default makeStyles((theme) => ({
     marginRight: 5,
   },
   cardsHolder: {
+    width: "100%",
     display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
     marginBottom: 50,
     justifyContent: "center",
   },
   card: {
+    maxWidth: '100%',
     width: 300,
-    margin: "0px 20px",
+    margin: "30px",
   },
 }));

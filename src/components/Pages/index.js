@@ -78,7 +78,7 @@ const Pages = ({ history }) => {
                           variant="outlined"
                           size="small"
                           label={tag}
-                          className={classes.mx5}
+                          className={classes.chips}
                         />
                       ))
                     : null}
@@ -88,7 +88,6 @@ const Pages = ({ history }) => {
           ))}
         </Box>
       </Box>
-      {/* {paginas.length !== 0?<VideoCarousel />:null} */}
     </Box>
   );
 };
