@@ -2,7 +2,6 @@ import React from "react";
 import { Bar } from 'react-chartjs-2';
 
 const LineChart = (props) => {
-    console.log(props.relatorio)
     const randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
     let arrCores = props.relatorio.map(el=>`rgba(${randomBetween(0,255)},${randomBetween(0,255)},${randomBetween(0,255)},1)`)
     const data = {
