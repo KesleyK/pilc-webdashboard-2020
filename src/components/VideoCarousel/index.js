@@ -36,6 +36,7 @@ export default function VideoCarousel() {
           height: "100%",
           maxWidth: '100%',
         }}
+        key={i}
         height="220px"
         width="100%"
         url={video}
@@ -45,7 +46,7 @@ export default function VideoCarousel() {
 
   return (
     <div className={classes.root} id="videosholder">
-      <Typography variant="title" className={classes.videosHeading}>
+      <Typography component="span" className={classes.videosHeading}>
         Conteúdos relacionados
       </Typography>
       <ItemsCarousel
